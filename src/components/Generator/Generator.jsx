@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Color from "./Color";
 import "./Generator.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Generator = () => {
   const [state, setState] = useState({
@@ -24,15 +25,16 @@ const Generator = () => {
       colors: colors,
     });
   }
-
-  const user = null;
-  const navigate = useNavigate()
+  const { user } = useContext(AuthContext)
+  console.log(user);
+  // const user = null;
+  // const navigate = useNavigate()
   
-  useEffect(()=>{
-    if (!user) {
-      navigate("/login")
-    }
-  },[])
+  // useEffect(()=>{
+  //   if (!user) {
+  //     navigate("/login")
+  //   }
+  // },[])
 
   return (
     <div className="color-container">

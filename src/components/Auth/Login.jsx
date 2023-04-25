@@ -1,17 +1,31 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   const [emailErr, setEmailErr] = useState("")
   const [passwordErr, setPasswordErr] = useState("")
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    if (emailErr) {
+      toast(emailErr)
+      e.target.email.focus()
+      return
+    } else if (passwordErr) {
+      toast(passwordErr)
+      e.target.password.focus()
+      return
+    }
     console.log(password, email);
   }
+
+
   const handlePassword = (e) => {
     const passwordInput = e.target.value
     setPassword(passwordInput)
@@ -23,6 +37,8 @@ const Login = () => {
       setPasswordErr("")
     }
   }
+
+
   const handleEmail = (e) => {
     const emailInput = e.target.value
     setEmail(emailInput)
@@ -32,6 +48,8 @@ const Login = () => {
       setEmailErr("");
     }
   }
+
+  
   return <div className="mt-36">
     <form onSubmit={handleSubmit} className="bg-gray-200 p-10 rounded-lg">
       <div className="relative z-0 w-full mb-6 group">
